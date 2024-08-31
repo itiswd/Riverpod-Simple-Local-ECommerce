@@ -18,7 +18,12 @@ class _CartScreenState extends ConsumerState<CartScreen> {
     final total = ref.watch(totalCartPriceProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Your Cart'),
+        title: const Text(
+          'Your Cart',
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+          ),
+        ),
         centerTitle: true,
         // actions: [],
       ),
