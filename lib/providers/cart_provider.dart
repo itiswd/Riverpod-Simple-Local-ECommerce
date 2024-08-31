@@ -2,16 +2,20 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_files/models/product.dart';
 
 class CartProvider extends Notifier<Set<Product>> {
+  //Initialize value
   @override
   Set<Product> build() {
-    return {
-      const Product(
-        id: '1',
-        title: 'Groovy Shorts',
-        price: 12,
-        image: 'assets/products/shorts.png',
-      ),
-    };
+    return {};
+  }
+
+  //Add product
+  void add(Product product) {
+    state = {...state, product};
+  }
+
+  //Remove product
+  void remove(Product product) {
+    state = {...state}..remove(product);
   }
 }
 
