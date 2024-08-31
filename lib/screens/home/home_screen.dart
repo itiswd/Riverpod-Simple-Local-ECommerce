@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_files/providers/cart_provider.dart';
 import 'package:riverpod_files/providers/products_provider.dart';
 import 'package:riverpod_files/shared/cart_icon.dart';
 
@@ -8,7 +9,8 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final products = ref.watch(productsProvider);
+    final allProducts = ref.watch(productsProvider);
+    final cartProducts = ref.watch(cardNotifierProvider);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueGrey.withOpacity(0.05),
@@ -18,7 +20,7 @@ class HomeScreen extends ConsumerWidget {
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: GridView.builder(
-          itemCount: products.length,
+          itemCount: allProducts.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             mainAxisSpacing: 20,
@@ -36,11 +38,20 @@ class HomeScreen extends ConsumerWidget {
                   Image.asset(
                     width: 64,
                     height: 64,
-                    products[index].image,
+                    allProducts[index].image,
                   ),
-                  const SizedBox(height: 12.0),
-                  Text(products[index].title),
-                  Text(products[index].price.toString()),
+                  Text(allProducts[index].title),
+                  Text(allProducts[index].price.toString()),
+                  if (cartProducts.contains(allProducts[index]))
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text('remove from cart'),
+                    ),
+                  if (!cartProducts.contains(allProducts[index]))
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text('add to cart'),
+                    )
                 ],
               ),
             );
