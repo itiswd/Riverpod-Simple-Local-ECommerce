@@ -1,7 +1,10 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_files/models/product.dart';
 
-class CartProvider extends Notifier<Set<Product>> {
+part 'cart_provider.g.dart';
+
+@riverpod
+class CartNotifier extends _$CartNotifier {
   //Initialize value
   @override
   Set<Product> build() {
@@ -18,7 +21,3 @@ class CartProvider extends Notifier<Set<Product>> {
     state = {...state}..remove(product);
   }
 }
-
-final cardNotifierProvider = NotifierProvider<CartProvider, Set<Product>>(() {
-  return CartProvider();
-});

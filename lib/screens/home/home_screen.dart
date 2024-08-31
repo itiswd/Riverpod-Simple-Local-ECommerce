@@ -10,7 +10,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final allProducts = ref.watch(productsProvider);
-    final cartProducts = ref.watch(cardNotifierProvider);
+    final cartProducts = ref.watch(cartNotifierProvider);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueGrey.withOpacity(0.05),
@@ -46,7 +46,7 @@ class HomeScreen extends ConsumerWidget {
                     TextButton(
                       onPressed: () {
                         ref
-                            .read(cardNotifierProvider.notifier)
+                            .read(cartNotifierProvider.notifier)
                             .remove(allProducts[index]);
                       },
                       child: const Text('remove from cart'),
@@ -55,7 +55,7 @@ class HomeScreen extends ConsumerWidget {
                     TextButton(
                       onPressed: () {
                         ref
-                            .read(cardNotifierProvider.notifier)
+                            .read(cartNotifierProvider.notifier)
                             .add(allProducts[index]);
                       },
                       child: const Text('add to cart'),
